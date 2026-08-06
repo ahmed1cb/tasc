@@ -59,20 +59,12 @@ class Tasc:
         self._edit_json(self.tasks)
 
     def _drop(self, id: int):
-        target = self.tasks.get(id)
-        if target is None:
-            print("The Target Task is Not Found Try: tasc list")
-            return
-
+        self._check(id)
         del self.tasks[id]
         self._edit_json(self.tasks)
 
     def _update(self, id: int, body: str = ""):
-        target = self.tasks.get(id)
-        if target is None:
-            print("The Target Task is Not Found Try: tasc list")
-            return
-
+        self._check(id)
         if not body:
             print("The new Content is Required usage: tasc edit :id :newContent")
 
@@ -80,10 +72,7 @@ class Tasc:
         self._edit_json(self.tasks)
 
     def _complete(self, id: int):
-        target = self.tasks.get(id)
-        if target is None:
-            print("The Target Task is Not Found Try: tasc list")
-            return
+        self._check(id)
         new = self.tasks[id]
         new["completed"] = True
         self.tasks[id] = new
@@ -96,6 +85,13 @@ class Tasc:
             print(
                 f"{'[x]' if task['completed'] is True else '[]'} {id} : {task['body']}"
             )
+
+    def _check(self, id):
+        target = self.tasks.get(id)
+        if target is None:
+            print("The Target Task is Not Found Try: tasc list")
+            return False
+        return True
 
     def _edit_json(self, newData: dict):
         with open(self.tasks_file_path, "w", encoding="utf-8") as file:
