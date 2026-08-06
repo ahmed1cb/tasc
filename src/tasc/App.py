@@ -58,7 +58,15 @@ class Tasc:
         self.tasks[id] = task
         self._edit_json(self.tasks)
 
-    def _drop(self, id: int): ...
+    def _drop(self, id: int):
+        target = self.tasks.get(id)
+        if target is None:
+            print("The Target Task is Not Found Try: tasc list")
+            return
+
+        del self.tasks[id]
+        self._edit_json(self.tasks)
+
     def _update(self, id: int, body: str): ...
     def _complete(self, id: int):
         target = self.tasks.get(id)
