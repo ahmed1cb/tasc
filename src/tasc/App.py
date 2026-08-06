@@ -60,12 +60,14 @@ class Tasc:
     def _drop(self, id: int): ...
     def _update(self, id: int, body: str): ...
     def _list(self):
-        print(self.tasks)
+        print("*" * 10 + " Tasks " + "*" * 10)
+        for task in self.tasks:
+            print(f"[] {task['id']} : {task['body']}")
 
     def _edit_json(self, newArr: list):
-        with open(self.tasks_file_path,'w',  encoding="utf-8") as file:
+        with open(self.tasks_file_path, "w", encoding="utf-8") as file:
             json.dump(newArr, file)
 
     def load_tasks(self):
-        with open(self.tasks_file_path,'r', encoding="utf-8") as file:
+        with open(self.tasks_file_path, "r", encoding="utf-8") as file:
             self.tasks = json.loads(file.read())
