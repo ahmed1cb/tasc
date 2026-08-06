@@ -1,0 +1,22 @@
+[project]
+name = "tasc"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Ahmed Hassan",email = "ah8438263@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "platformdirs (>=4.11.0,<5.0.0)"
+]
+
+[project.scripts]
+tasc = "tasc.cli:main"
+
+[tool.poetry]
+packages = [{include = "tasc", from = "src"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
