@@ -67,7 +67,18 @@ class Tasc:
         del self.tasks[id]
         self._edit_json(self.tasks)
 
-    def _update(self, id: int, body: str): ...
+    def _update(self, id: int, body: str = ""):
+        target = self.tasks.get(id)
+        if target is None:
+            print("The Target Task is Not Found Try: tasc list")
+            return
+
+        if not body:
+            print("The new Content is Required usage: tasc edit :id :newContent")
+
+        self.tasks[id]["body"] = body
+        self._edit_json(self.tasks)
+
     def _complete(self, id: int):
         target = self.tasks.get(id)
         if target is None:
