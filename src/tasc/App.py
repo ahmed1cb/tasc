@@ -59,7 +59,8 @@ class Tasc:
         self._edit_json(self.tasks)
 
     def _drop(self, id: int):
-        self._check(id)
+        if not self._check(id):
+            return
         del self.tasks[id]
         self._edit_json(self.tasks)
 
@@ -72,7 +73,8 @@ class Tasc:
         self._edit_json(self.tasks)
 
     def _complete(self, id: int):
-        self._check(id)
+        if not self._check(id):
+            return
         new = self.tasks[id]
         new["completed"] = True
         self.tasks[id] = new

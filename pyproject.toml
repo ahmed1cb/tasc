@@ -1,7 +1,7 @@
 [project]
 name = "tasc"
 version = "0.1.0"
-description = ""
+description = "An Easy Way to Manage Tasks inside Your Terminal"
 authors = [
     {name = "Ahmed Hassan",email = "ah8438263@gmail.com"}
 ]
